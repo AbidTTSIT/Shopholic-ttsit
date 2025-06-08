@@ -1,0 +1,208 @@
+/* General Grid Layout for .pg-hom */
+.pg-hom {
+    display: grid;
+    grid-template-areas:
+        "apps apps"
+        "swiper news"
+        "cats cats"
+        "rest rest";
+    grid-template-columns: 520px 1fr;
+    grid-gap: 0 9px;
+}
+
+.pg-hom-swiper {
+    grid-area: swiper;
+    width: 520px;
+    height: 260px;
+    box-shadow: 1px 1px 2px -1px #ccc;
+}
+
+.pg-hom-apps {
+    grid-area: apps;
+    background: linear-gradient(to left, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+
+.pg-hom-cats {
+    grid-area: cats;
+    background: linear-gradient(-225deg, #d2f9f0 0%, #f6e9fc 48%, #c8c2fa 100%);
+}
+
+.pg-hom-top-stories {
+    grid-area: news;
+    display: flex;
+    background: #778899;
+    color: #fff;
+    margin-bottom: var(--mv);
+}
+
+/* Top Stories Section */
+.pg-hom-top-stories .sm-box-header {
+    padding: 9px;
+}
+
+.pg-hom-top-stories .sm-box-title {
+    width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.pg-hom-top-stories .sm-box-title h2 {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.pg-hom-top-stories > .x {
+    flex: 1;
+    padding: 0.5714rem 0.5714rem 0.5714rem 0;
+    overflow: hidden;
+}
+
+.pg-hom-ts-posts {
+    display: grid;
+    gap: 6px;
+    padding: 0;
+}
+
+.pg-hom-ts-posts > .sm-article {
+    border: 1px solid #8594a3;
+    height: 132px;
+}
+
+.pg-hom-ts-posts > .sm-article > a {
+    font-size: 14px;
+}
+
+sm-dap[pos="a_home_in_top_stories"] {
+    height: 110px;
+    margin-bottom: 6px;
+    background: #ebf5ff;
+    padding: 6px 12px 6px 6px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+sm-dap[pos="a_home_in_top_stories"] > div {
+    height: 100%;
+}
+
+sm-dap[pos="a_home_in_top_stories"] .sm-article {
+    --img-w: 98px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 750px) {
+    .pg-hom-top-stories .sm-box-header {
+        padding: 12px;
+    }
+
+    .pg-hom-ts-posts > .sm-article {
+        height: 118px;
+    }
+
+    sm-dap[pos="a_home_in_top_stories"] {
+        height: 118px;
+    }
+
+    sm-dap[pos="a_home_in_top_stories"] .sm-article {
+        --img-w: 192px;
+    }
+
+    sm-dap.p-d + .pg-hom-ts-posts > .sm-article:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 960px) {
+    .pg-hom-ts-posts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pg-hom-ts-posts > .sm-article:nth-child(n+5) {
+        display: none;
+    }
+
+    sm-dap.p-d + .pg-hom-ts-posts > .sm-article:nth-child(n+3) {
+        display: none;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 840px) {
+    .pg-hom-ts-posts {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .pg-hom-ts-posts > .sm-article:nth-child(n+3) {
+        display: none;
+    }
+
+    sm-dap.p-d + .pg-hom-ts-posts > .sm-article:nth-child(n+2) {
+        display: none;
+    }
+}
+
+/* App Links Styling */
+.pg-hom-apps .sm-cats {
+    --per-row: 6;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 7px 12px;
+}
+
+.pg-hom-apps .sm-cats > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 65px;
+    text-decoration: none;
+}
+
+.pg-hom-apps .sm-cats > a > img {
+    width: 32px;
+    height: 32px;
+    padding: 8px 0 !important;
+    margin-right: 12px;
+    box-sizing: content-box;
+    border-radius: 15px;
+}
+
+@media (max-width: 750px) {
+    .pg-hom-apps .sm-cats > a:nth-child(5) {
+        display: none;
+    }
+}
+
+/* Categories Styling */
+.pg-hom-cats .sm-cats > a {
+    font-size: 0.9rem;
+}
+
+.pg-hom-cats .sm-cats > a > img {
+    padding: 0.26rem;
+}
+
+@media (min-width: 750px) and (max-width: 860px) {
+    .pg-hom-cats .sm-cats {
+        --per-row: 10;
+    }
+    .pg-hom-cats .sm-cats > a:nth-child(n+11) {
+        display: none;
+    }
+}
+
+@media (min-width: 860px) and (max-width: 1080px) {
+    .pg-hom-cats .sm-cats {
+        --per-row: 12;
+    }
+    .pg-hom-cats .sm-cats > a:nth-child(n+13) {
+        display: none;
+    }
+}
+
+@media (min-width: 1080px) {
+    .pg-hom-cats .sm-cats {
+        --per-row: 14;
+    }
+    .pg-hom-cats .sm-cats > a:nth-child(n+15) {
+        display: none;
+    }
+}
