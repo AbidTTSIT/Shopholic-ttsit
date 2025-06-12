@@ -48,13 +48,22 @@ class ProductController extends Controller
     public function categories()
     {
         try {
-            $categories = Category::all();
-            if ($categories) {
-                return response()->json([
-                    'status' => true,
-                    'categories' => $categories
-                ], 200);
-            }
+            $categories = Category::with('images')->get();
+
+            $categories->map(function($category){
+                $category->images->map(function($image){
+                    $image->path = asset('assets/img/category/'. $image->path);
+                    return $image;
+                });
+                return $category;
+            });
+
+         
+            return response()->json([
+                'status' => true,
+                'categories' => $categories
+            ], 200);
+        
         } catch (Exception $e) {
             return response()->json([
                 'status' => false,
